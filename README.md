@@ -1,11 +1,11 @@
-**SRP 04/14/2023**
+# GNATS
 
-I have created this subdirectory in order to create an organized field data workflow for the creation of GNATSAT.
+### Overview:
 
-The cms_dev parent directory was created before the matchup-workflow was generated.  Notebooks in this workflow dependended on a G2 Reader database extraction. However, since then, the database has been migrated to being hosted on Digital Ocean.  Additionally, we have moved away from the G2 Reader to using python to extract data from the database.  The python extraction formats the data differently than the G2 reader extraction. Therefore, notebooks that dealt with field data need to be modified. 
+This repository houses scripts relevant to the processing of both GNATS flow-through and discrete data.
 
-Ultimately, we have decided on an organization as follows:
+### Sub-Directories:
 
-Field data will be configured in the specific project directory (ie. gnatsat field data will be configured in the cms_dev, and pic data will be configured in the pic_dev repository). Once the field data is extracted and configured, the creation of a seabass file, of downloading satellite data, and of merging field data with satellite data will be done in the matchup_workflow repository. 
+**matlab-scripts:**  These scripts take in raw instrument data and apply factory, instrument, and cruise-specific calibrations, as well as data dependent corrections (ie. temp-sal or scattering corrections). These scripts are used to update the private SQL GNATS database managed by BLOS. GNATS data is publicly available on SeaBASS at DOI: 10.5067/SeaBASS/GNATS/DATA001.
 
-In this directory, I will extract data from the database via python and configure the data for merging with satellite data.
+**main:** The main directory houses mostly a python workflow which aligns and merges the discrete data with the flow-through data based on nearest time. Additionally, data is visualized and qc performed. Data are flagged. Flagged data are eliminated from the final flow-discrete gnats compiled dataset.
